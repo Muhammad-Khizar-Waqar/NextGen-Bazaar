@@ -1,8 +1,6 @@
-
-export default function Home() {
-  return (
-    <main>
-      <h1>Welcome to My Next.js App</h1>
-    </main>
-  );
+ const Home = () => {
+  return <h1>Welcome to NextGen Bazaar!</h1>;
 }
+
+
+export default Home;

@@ -1,8 +1,9 @@
+import Navbar from "@/components/shared/Navbar"
 
 const page = () => {
   return (
     <div>
-      <h2>Next Gen Home Page</h2>
+      <Navbar />
     </div>
   )
 }

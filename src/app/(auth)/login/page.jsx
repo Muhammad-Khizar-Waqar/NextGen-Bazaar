@@ -66,19 +66,19 @@
 
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+// import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+// import { useRouter } from "next/navigation";
+// import { useEffect } from "react";
 
 export default function Login() {
-  const supabase = createClientComponentClient();
-  const router = useRouter();
+  // const supabase = createClientComponentClient();
+  // const router = useRouter();
 
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session) router.push("/");
-    });
-  }, [router, supabase]);
+  // useEffect(() => {
+  //   supabase.auth.getSession().then(({ data: { session } }) => {
+  //     if (session) router.push("/");
+  //   });
+  // }, [router, supabase]);
 
   return (
     <div className="flex min-h-screen items-center justify-center p-24 bg-gradient-to-br from-orange-50 to-yellow-100">

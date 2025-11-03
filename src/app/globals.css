@@ -44,6 +44,9 @@
 }
 
 :root {
+  --gold: #D4AF37;
+  --dark-gold: #B8860B;
+  --light-bg: #FAF9F6;
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -120,3 +123,6 @@
     @apply bg-background text-foreground;
   }
 }
+
+.gold-text { color: var(--gold); }
+.bg-light { background-color: var(--light-bg); }

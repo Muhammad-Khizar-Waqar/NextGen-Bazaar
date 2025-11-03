@@ -1,58 +1,36 @@
-'use client';
-
-import { motion } from 'framer-motion';
-import Image from 'next/image';
 import Link from 'next/link';
-import { ShoppingCart, Heart } from 'lucide-react';
-import { useDispatch } from 'react-redux';
-import { addToCart } from '@/store/cartSlice';
-import { addToWishlist } from '@/store/wishlistSlice';
+import Image from 'next/image';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
+import { Badge } from '@/components/ui/badge';
 
-// interface Product {
-//   id: string;
-//   name: string;
-//   price: number;
-//   image_url: string;
-//   category: string;
-// }
 
 export default function ProductCard({ product }) {
-  const dispatch = useDispatch();
-
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      whileHover={{ y: -5 }}
-      className="group bg-white rounded-lg shadow-md overflow-hidden border hover:shadow-lg transition-shadow"
-    >
-      <Link href={`/products/${product.id}`}>
+    <Card className="w-full max-w-sm overflow-hidden group hover:shadow-lg transition-shadow">
+      <CardHeader className="p-0 relative">
         <Image
-          src={product.image_url}
+          src={product.image}
           alt={product.name}
           width={300}
           height={300}
-          className="w-full h-48 object-cover group-hover:scale-105 transition-transform"
+          className="w-full h-64 object-cover group-hover:scale-105 transition-transform"
         />
-      </Link>
-      <div className="p-4">
-        <Link href={`/products/${product.id}`}>
-          <h3 className="font-bold text-lg mb-1 hover:text-primary transition-colors">{product.name}</h3>
-        </Link>
-        <p className="text-2xl font-semibold text-gem-gold mb-4">${product.price}</p>
-        <p className="text-sm text-gray-500 mb-4">{product.category}</p>
-        <div className="flex gap-2">
-          <Button onClick={() => dispatch(addToCart(product))} size="sm" className="flex-1">
-            <ShoppingCart size={16} className="mr-2" />
-            Add to Cart
-          </Button>
-          <Button variant="ghost" size="sm" onClick={() => dispatch(addToWishlist(product.id))}>
-            <Heart size={16} fill="currentColor" className="text-red-500" />
-          </Button>
+        {product.discount && (
+          <Badge className="absolute top-2 left-2 bg-red-500">-{product.discount}%</Badge>
+        )}
+      </CardHeader>
+      <CardContent className="p-4">
+        <CardTitle className="text-lg font-serif gold-text">{product.name}</CardTitle>
+        <CardDescription className="text-sm text-gray-600">{product.category}</CardDescription>
+      </CardContent>
+      <CardFooter className="p-4 pt-0 flex justify-between">
+        <div>
+          <p className="text-xl font-bold">${product.price}</p>
+          {product.discount && <p className="text-sm text-gray-500 line-through">${(product.price * 1.1).toFixed(2)}</p>}
         </div>
-      </div>
-    </motion.div>
+        <Button className="bg-gold text-white hover:bg-dark-gold">Add to Cart</Button>
+      </CardFooter>
+    </Card>
   );
 }
